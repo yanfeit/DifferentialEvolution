@@ -1,0 +1,19 @@
+CC=gcc-9
+# CFLAGS = -Wall -g
+# LIBS=-lm
+INC=-I../../
+target = test_Rastrigin
+obj = test_de_convergence_strategy_Rastrigin.o de_test_func.o de.o mtwister.o
+
+$(target) : $(obj)
+	$(CC) $(obj) -o $(target)
+
+test_de_convergence_strategy_Rastrigin.o : test_de_convergence_strategy_Rastrigin.c
+	$(CC) $(INC) -c $< -o $@
+
+%.o : ../../%.c
+	$(CC) $(INC) -c $< -o $@
+
+.PHONY : clean
+clean:
+	rm -rf $(obj) $(target)

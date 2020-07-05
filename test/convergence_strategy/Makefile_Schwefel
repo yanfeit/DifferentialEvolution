@@ -1,0 +1,19 @@
+CC=gcc-9
+# CFLAGS = -Wall -g
+# LIBS=-lm
+INC=-I../../
+target = test_Schwefel
+obj = test_de_convergence_strategy_Schwefel.o de_test_func.o de.o mtwister.o
+
+$(target) : $(obj)
+	$(CC) $(obj) -o $(target)
+
+test_de_convergence_strategy_Schwefel.o : test_de_convergence_strategy_Schwefel.c
+	$(CC) $(INC) -c $< -o $@
+
+%.o : ../../%.c
+	$(CC) $(INC) -c $< -o $@
+
+.PHONY : clean
+clean:
+	rm -rf $(obj) $(target)
